@@ -1,0 +1,151 @@
+%%%%%%%%%%%%%%%%%%%%%%%% editor.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for the contributions of a "contributed volume"
+%
+% Use this file as a template for your own input.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Springer %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[graybox, envcountchap, tocaftauthskip, 12pt]{svmult}
+% \documentclass{simcenterdocumentation}
+
+\usepackage{microtype}
+
+%% use geometry to reduce the margins
+\usepackage{geometry}
+\geometry{
+    letterpaper,
+    heightrounded,
+    hratio=1:1
+}
+
+%% set the reference style
+% \usepackage{natbib}
+% \bibliographystyle{abbrvnat}
+% \setcitestyle{authoryear,open={(},close={)}}
+\usepackage{nameref}
+\usepackage[
+natbib,
+dashed=false,
+defernumbers,
+hyperref=true,
+backend=biber,
+uniquename=false,
+style=authoryear-comp,
+maxcitenames=2,
+mincitenames=1,
+maxbibnames=9,
+uniquelist=false
+]{biblatex}
+\defbibheading{subbibliography}{%
+    \section*{References for Section \ref{refsegment:\therefsegment}}}
+\setlength\bibitemsep{5pt}
+\addbibresource{zotero-refs-BLT.bib}
+
+
+\usepackage{type1cm}        % activate if the above 3 fonts are 
+                             % not available on your system
+                             
+\usepackage{comment}
+
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+% \usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+
+\usepackage{newtxtext}       % 
+\usepackage{newtxmath}       % selects Times Roman as basic font
+
+%\usepackage{mathptmx}       % selects Times Roman as basic font
+\usepackage{helvet}         % selects Helvetica as sans-serif font
+
+\usepackage{placeins}        % allows the use of floatbarriers
+\usepackage{tabularx}        % creates tables that automatically adjust to contents
+\usepackage{booktabs}        % allows the use of \midrule 
+\usepackage{soul}            % highlighting
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true} % use for debugging; helps identify raw citations.
+
+
+% see the list of further useful packages in the Reference Guide
+
+\makeindex             % used for the subject index
+                       % please use the style svind.ist with
+                       % your makeindex program
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{import}
+\newcommand{\seginclude}[1]{\endrefsegment\newrefsegment\include{#1}}
+\newcommand{\segimport}[2]{\begin{refsegment}\import{#1}{#2}\end{refsegment}}
+\input{editor/prgmstyle.tex}
+
+
+\begin{document}
+
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\segimport{editor/}{preface}
+\segimport{editor/}{acknowledgement}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\segimport{editor/}{contriblist}
+\segimport{editor/}{acronym}
+
+\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\segimport{editor/}{introduction}
+
+\segimport{Hazard/}{main}
+\segimport{Hazard/Earthquake_Ground_Shaking/}{main}
+\segimport{Hazard/Earthquake_Surface_Rupture/}{main}
+\segimport{Hazard/Earthquake_Liquefaction/}{main}
+\segimport{Hazard/Earthquake_Landslide/}{main}
+\segimport{Hazard/Storm_Wind/}{main}
+\segimport{Hazard/Storm_Surge/}{main}
+\segimport{Hazard/Tsunami/}{main}
+
+\segimport{Response/}{main}
+\segimport{Response/Structural/}{main}
+\segimport{Response/Geotechnical/}{main}
+\segimport{Response/CFD_Wind/}{main}
+\segimport{Response/CFD_Water/}{main}
+
+\segimport{Performance/}{main}
+\segimport{Performance/Buildings/}{main}
+\segimport{Performance/Transportation/}{main}
+\segimport{Performance/Pipelines/}{main}
+\segimport{Performance/Power/}{main}
+
+\segimport{Recovery/}{main}
+\segimport{Recovery/Communities/}{main}
+\segimport{Recovery/Infrastructure_Systems/}{main}
+\segimport{Recovery/Housing/}{main}
+\segimport{Recovery/Businesses/}{main}
+
+\segimport{CrossCutting/}{main}
+\segimport{CrossCutting/Uncertainty/}{main}
+\segimport{CrossCutting/AI/}{main}
+
+
+\backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{partbacktext}
+\part{Appendix}
+\appendix
+\segimport{editor/}{appendix}
+\end{partbacktext}
+
+\input{references}
+
+\printindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
